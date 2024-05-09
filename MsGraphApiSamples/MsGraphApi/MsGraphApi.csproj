@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{47AAFE10-635C-4046-99E4-108F64411207}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>MsGraphApiSamples</RootNamespace>
-    <AssemblyName>MsGraphApiSamples</AssemblyName>
+    <ProjectGuid>{AEB24444-A6CE-48B2-82E5-2A9E94AA8091}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MsGraphApi</RootNamespace>
+    <AssemblyName>MsGraphApi</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,19 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\ConsoleLogger.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Api\Http\FakeGraphApiHttpClient.cs" />
+    <Compile Include="Api\Http\HttpClientFactory.cs" />
+    <Compile Include="Api\Http\RealGraphApiHttpClient.cs" />
+    <Compile Include="Exceptions\GraphApiException.cs" />
+    <Compile Include="Api\GraphApi.cs" />
+    <Compile Include="Api\GraphApiEndpoints.cs" />
+    <Compile Include="Api\Authentication\IAuthenticationSession.cs" />
+    <Compile Include="Api\Http\IGraphApiHttpClient.cs" />
+    <Compile Include="Infrastructure\ILogger.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
+    <Compile Include="Models\EmailMessage.cs" />
+    <Compile Include="Models\EmailRecipient.cs" />
+    <Compile Include="Models\GetEmailMessagesResponse.cs" />
+    <Compile Include="Models\GraphApiListResponse.cs" />
+    <Compile Include="Models\GraphApiResponse.cs" />
+    <Compile Include="Models\ItemBody.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MsGraphApi\MsGraphApi.csproj">
-      <Project>{aeb24444-a6ce-48b2-82e5-2a9e94aa8091}</Project>
-      <Name>MsGraphApi</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

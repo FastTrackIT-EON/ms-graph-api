@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MsGraphApiSamples
+namespace MsGraphApi.Models
 {
     // https://learn.microsoft.com/en-us/graph/api/resources/recipient?view=graph-rest-1.0
     public class EmailRecipient

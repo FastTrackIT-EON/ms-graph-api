@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MsGraphApiSamples
+namespace MsGraphApi.Exceptions
 {
     public class GraphApiException : Exception
     {
@@ -17,7 +17,7 @@ namespace MsGraphApiSamples
             string message,
             int statusCode,
             string reasonPhrase,
-            Dictionary<string, object> errorDetails) 
+            Dictionary<string, object> errorDetails)
             : this(message, null, statusCode, reasonPhrase, errorDetails)
         {
         }
@@ -27,7 +27,7 @@ namespace MsGraphApiSamples
             Exception innerException,
             int statusCode,
             string reasonPhrase,
-            Dictionary<string, object> errorDetails) 
+            Dictionary<string, object> errorDetails)
             : base(message, innerException)
         {
             this.StatusCode = statusCode;

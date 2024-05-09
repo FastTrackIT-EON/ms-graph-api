@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace MsGraphApiSamples
+namespace MsGraphApi.Models
 {
     // https://learn.microsoft.com/en-us/graph/api/resources/eventmessage?view=graph-rest-1.0
     public class EmailMessage
