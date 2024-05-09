@@ -1,67 +1,44 @@
-﻿namespace MsGraphApi.Tests
+﻿using System.IO;
+using System.Reflection;
+using System;
+using System.Linq;
+
+namespace MsGraphApi.Tests
 {
     internal static class JsonSamples
     {
-        public const string JsonWithMissingBodyContentAndBodyPreview = @"
-{
-    ""@odata.context"": ""https://graph.microsoft.com/v1.0/$metadata#users('florin-demo-graph%40outlook.com')/messages"",
-    ""value"": [
+        public static string ReadResourceJson(string resourceName)
         {
-            ""@odata.etag"": ""W/\""FwAAABYAAAAhw0ds1/TOQa+G/R7fTNeAAAAAAAxF\"""",
-            ""id"": ""AQMkADAwATNiZmYAZC03YWIzLWYxY2EtMDACLTAwCgBGAAADb4p9uHcFHUmPIQOoxS0aNAcAIcNHbNf0zkGvhv0e30zXgAAAAgEMAAAAIcNHbNf0zkGvhv0e30zXgAAAAgVdAAAA"",
-            ""createdDateTime"": ""2024-05-08T10:44:35Z"",
-            ""lastModifiedDateTime"": ""2024-05-08T10:44:36Z"",
-            ""changeKey"": ""FwAAABYAAAAhw0ds1/TOQa+G/R7fTNeAAAAAAAxF"",
-            ""categories"": [],
-            ""receivedDateTime"": ""2024-05-08T10:44:36Z"",
-            ""sentDateTime"": ""2024-05-08T10:44:31Z"",
-            ""hasAttachments"": false,
-            ""internetMessageId"": ""<d3deb5da-01b6-43f3-a067-cbb8258e8ca8@AS8PR04MB8296.eurprd04.prod.outlook.com>"",
-            ""subject"": ""Undeliverable: Meet for lunch?"",
-            ""importance"": ""normal"",
-            ""parentFolderId"": ""AQMkADAwATNiZmYAZC03YWIzLWYxY2EtMDACLTAwCgAuAAADb4p9uHcFHUmPIQOoxS0aNAEAIcNHbNf0zkGvhv0e30zXgAAAAgEMAAAA"",
-            ""conversationId"": ""AQQkADAwATNiZmYAZC03YWIzLWYxY2EtMDACLTAwCgAQALQ4h7VPEqxMo6RfJRgD8FI="",
-            ""conversationIndex"": ""AQHaoGuKtDiHtU8SrEyjpF8lGAPwUrGNKJSN"",
-            ""isDeliveryReceiptRequested"": null,
-            ""isReadReceiptRequested"": false,
-            ""isRead"": false,
-            ""isDraft"": false,
-            ""webLink"": ""https://outlook.live.com/owa/?ItemID=AQMkADAwATNiZmYAZC03YWIzLWYxY2EtMDACLTAwCgBGAAADb4p9uHcFHUmPIQOoxS0aNAcAIcNHbNf0zkGvhv0e30zXgAAAAgEMAAAAIcNHbNf0zkGvhv0e30zXgAAAAgVdAAAA&exvsurl=1&viewmodel=ReadMessageItem"",
-            ""inferenceClassification"": ""focused"",
-            ""body"": {
-                ""contentType"": ""html""
-            },
-            ""sender"": {
-                ""emailAddress"": {
-                    ""name"": ""Microsoft Outlook"",
-                    ""address"": ""MicrosoftExchange329e71ec88ae4615bbc36ab6ce41109e@sct-15-20-4755-11-msonline-outlook-9a5f6.templateTenant""
-                }
-            },
-            ""from"": {
-                ""emailAddress"": {
-                    ""name"": ""Microsoft Outlook"",
-                    ""address"": ""MicrosoftExchange329e71ec88ae4615bbc36ab6ce41109e@sct-15-20-4755-11-msonline-outlook-9a5f6.templateTenant""
-                }
-            },
-            ""toRecipients"": [
+            // Get the assembly where the resource is located
+            Assembly assembly = typeof(JsonSamples).Assembly;
+
+            // find matching resource name
+            string resolvedResourceName = assembly
+                .GetManifestResourceNames()
+                .Where(rs => rs.IndexOf(resourceName, StringComparison.OrdinalIgnoreCase) >= 0)
+                .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(resolvedResourceName))
+            {
+                return string.Empty;
+            }
+
+            // Read the embedded resource stream
+            using (Stream stream = assembly.GetManifestResourceStream(resolvedResourceName))
+            {
+                if (stream != null)
                 {
-                    ""emailAddress"": {
-                        ""name"": ""garthf@contoso.com"",
-                        ""address"": ""garthf@contoso.com""
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string result = reader.ReadToEnd();
+                        return result;
                     }
                 }
-            ],
-            ""ccRecipients"": [],
-            ""bccRecipients"": [],
-            ""replyTo"": [],
-            ""flag"": {
-                ""flagStatus"": ""notFlagged""
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
-    ]
-}";
-
-
-
     }
 }

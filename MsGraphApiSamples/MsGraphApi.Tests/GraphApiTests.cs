@@ -14,8 +14,10 @@ namespace MsGraphApi.Tests
         public async Task GraphApi_WhenJsonWithMissingBodyPreview_DeserializesSuccessfully()
         {
             // arrange
+            string sampleJson = JsonSamples.ReadResourceJson("ResponseWithMissingBodyContentAndBodyPreview");
+
             GraphApi graphApi = new GraphApi(
-                HttpClientFactory.CreateFakeHttpClient(JsonSamples.JsonWithMissingBodyContentAndBodyPreview),
+                HttpClientFactory.CreateFakeHttpClient(sampleJson),
                 new FakeLogger());
 
             // act
