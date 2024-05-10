@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MsGraphApi.Models
 {
-    // https://learn.microsoft.com/en-us/graph/api/resources/eventmessage?view=graph-rest-1.0
+    // https://learn.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0#properties
     public class EmailMessage
     {
         [JsonProperty("bccRecipients")]

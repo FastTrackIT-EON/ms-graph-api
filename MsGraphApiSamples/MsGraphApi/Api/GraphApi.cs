@@ -1,6 +1,5 @@
 ﻿using MsGraphApi.Api.Http;
 using MsGraphApi.Exceptions;
-using MsGraphApi.Http.Authentication;
 using MsGraphApi.Infrastructure;
 using MsGraphApi.Models;
 using Newtonsoft.Json;

@@ -50,7 +50,6 @@
     <Compile Include="Exceptions\GraphApiException.cs" />
     <Compile Include="Api\GraphApi.cs" />
     <Compile Include="Api\GraphApiEndpoints.cs" />
-    <Compile Include="Api\Authentication\IAuthenticationSession.cs" />
     <Compile Include="Api\Http\IGraphApiHttpClient.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
     <Compile Include="Models\EmailAddress.cs" />
